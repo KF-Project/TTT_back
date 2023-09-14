@@ -5,12 +5,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-// ì•„ë‹ˆ ì‹­ì˜ìë¦¬ê°€ 'ì¼ì‹­' ìš”ë‚œë¦¬ë¡œ ì¶œë ¥ë¨ í‘í‘
+// ¾Æ´Ï ½ÊÀÇÀÚ¸®°¡ 'ÀÏ½Ê' ¿ä³­¸®·Î Ãâ·ÂµÊ ÈæÈæ
 
 public class NumberConverter {
-  static String[] units = {"", "ì¼", "ì´", "ì‚¼", "ì‚¬", "ì˜¤", "ìœ¡", "ì¹ ", "íŒ”", "êµ¬"};
-  static String[] value1 = {"", "ì‹­", "ë°±", "ì²œ"};  
-  static String[] value2 = {"", "ë§Œ", "ì–µ", "ì¡°", "ê²½"};
+  static String[] units = {"", "ÀÏ", "ÀÌ", "»ï", "»ç", "¿À", "À°", "Ä¥", "ÆÈ", "±¸"};
+  static String[] value1 = {"", "½Ê", "¹é", "Ãµ"};  
+  static String[] value2 = {"", "¸¸", "¾ï", "Á¶", "°æ"};
   
 
   public static List<Integer> splitNumber(int number, int n) {
@@ -37,11 +37,11 @@ public class NumberConverter {
     return res;
   }  
  
-  // (10000)/(ë§Œ)
+  // (10000)/(¸¸)
   public static String numberToWordKo(int number, boolean delimiter) {
-    if (number == 0) return "ì˜";
+    if (number == 0) return "¿µ";
     List<String> wordList = new ArrayList<>();
-    int place = 0;  // í˜„ì¬ ìë¦¬ ìˆ˜
+    int place = 0;  // ÇöÀç ÀÚ¸® ¼ö
     while (number > 0) {
       int digits = number % 10000;
       number = number / 10000;
@@ -51,22 +51,22 @@ public class NumberConverter {
               word += value2[place];
           }
           if (digits == 1 && place == 1) {
-              wordList.add(value2[1]); // "ë§Œ"ì„ ì¶”ê°€
+              wordList.add(value2[1]); // "¸¸"À» Ãß°¡
           } else {
               wordList.add(word);
           }
       }
       place++;
     }
-    Collections.reverse(wordList);  // ë¦¬ìŠ¤íŠ¸ë¥¼ ì—­ìˆœìœ¼ë¡œ ì •ë ¬
+    Collections.reverse(wordList);  // ¸®½ºÆ®¸¦ ¿ª¼øÀ¸·Î Á¤·Ä
     return String.join(delimiter ? "" : "", wordList);
   }
 
-  // (10000)/(ì¼ë§Œ)
+  // (10000)/(ÀÏ¸¸)
   public static String numberToWordKo2(int number, boolean delimiter) {
-    if (number == 0) return "ì˜";
+    if (number == 0) return "¿µ";
     List<String> wordList = new ArrayList<>();
-    int place = 0;  // í˜„ì¬ ìë¦¬ ìˆ˜
+    int place = 0;  // ÇöÀç ÀÚ¸® ¼ö
     while (number > 0) {
       int digits = number % 10000;
       number = number / 10000;
@@ -79,7 +79,7 @@ public class NumberConverter {
       }
       place++;
     }
-    Collections.reverse(wordList);  // ë¦¬ìŠ¤íŠ¸ë¥¼ ì—­ìˆœìœ¼ë¡œ ì •ë ¬
+    Collections.reverse(wordList);  // ¸®½ºÆ®¸¦ ¿ª¼øÀ¸·Î Á¤·Ä
     return String.join(delimiter ? "" : "", wordList);
   } 
 

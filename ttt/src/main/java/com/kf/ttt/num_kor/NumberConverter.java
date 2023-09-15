@@ -12,15 +12,14 @@ public class NumberConverter {
   static String[] value1 = {"", "십", "백", "천"};  
   static String[] value2 = {"", "만", "억", "조", "경"};
   
-
   public static List<Integer> splitNumber(int number, int n) {
     List<Integer> res = new ArrayList<>();
     int div = (int) Math.pow(10, n);
 
     while (number > 0) {
-        int remainder = number % div;
-        number = number / div;
-        res.add(remainder);
+      int remainder = number % div;
+      number = number / div;
+      res.add(remainder);
     }
     return res;
   }

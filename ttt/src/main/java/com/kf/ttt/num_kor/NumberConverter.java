@@ -5,9 +5,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.kf.ttt.entity.Num;
+import com.kf.ttt.repository.NumRepository;
+
+
 // 아니 십의자리가 '일십' 요난리로 출력됨 흑흑
 
 public class NumberConverter {
+  @Autowired
+  private NumRepository numRepository;
+
   static String[] units = {"", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"};
   static String[] value1 = {"", "십", "백", "천"};  
   static String[] value2 = {"", "만", "억", "조", "경"};
@@ -71,16 +80,25 @@ public class NumberConverter {
       number = number / 10000;
       String word = convertLt10000(digits, delimiter);
       if (!word.isEmpty()) {
-          if (place > 0) {
-              word += value2[place];
-          }
-          wordList.add(word);
+        if (place > 0) {
+            word += value2[place];
+        }
+        wordList.add(word);
       }
       place++;
     }
     Collections.reverse(wordList);  // 리스트를 역순으로 정렬
     return String.join(delimiter ? "" : "", wordList);
   } 
+
+  public String convertAndSave(int number, boolean delimiter) {
+    String result = numberToWordKo2(number, delimiter);
+    Num num = new Num();
+    num.setResult(result);
+    // num.setLogtime(time);
+    numRepository.save(num);
+    return result;
+  }
 
 
   public static void main(String[] args) {

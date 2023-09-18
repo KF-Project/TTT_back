@@ -1,7 +1,5 @@
 package com.kf.ttt.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +20,7 @@ public class TransController {
 	TransService transService;
 	
 	@GetMapping("/{text}")
-	public List<String> engToKorean(@PathVariable("text") String text){
+	public String engToKorean(@PathVariable("text") String text){
 		return transService.engToKorean(text);
 		
 	}

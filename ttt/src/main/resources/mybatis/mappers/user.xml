@@ -3,7 +3,8 @@
 <mapper namespace="com.kf.ttt.repository.UserRepository">
 
     <select id="test" resultType="com.kf.ttt.entity.User">
-        select * from user
+        SELECT user_id, passwd, flag, user_name 
+        FROM user
     </select>
   
 </mapper>

@@ -1,8 +1,12 @@
 package com.kf.ttt.repository;
 
-import com.kf.ttt.entity.Num;
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
-public interface NumRepository extends JpaRepository<Num, Long>{
-    
+import org.apache.ibatis.annotations.Mapper;
+
+import com.kf.ttt.entity.Num;
+
+@Mapper
+public interface NumRepository {
+    public List<Num> numToKor();
 }

@@ -1,5 +1,8 @@
 package com.kf.ttt.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,13 +18,17 @@ import com.kf.ttt.service.TransService;
 @RequestMapping("/trans")
 public class TransController {
 
-
 	@Autowired
 	TransService transService;
-	
+
 	@GetMapping("/{text}")
-	public String engToKorean(@PathVariable("text") String text){
-		return transService.engToKorean(text);
-		
+	public Map<String, String> engToKorean(@PathVariable("text") String text) {
+		String transLation = transService.engToKorean(text);
+
+		Map<String, String> response = new HashMap<>();
+		response.put("text", text);
+		response.put("transLation", transLation);
+		return response;
+
 	}
 }

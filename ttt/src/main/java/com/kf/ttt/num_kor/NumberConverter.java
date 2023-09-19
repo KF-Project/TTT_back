@@ -96,7 +96,7 @@ public class NumberConverter {
     Num num = new Num();
     num.setResult(result);
     // num.setLogtime(time);
-    numRepository.save(num);
+    numRepository.numToKor();
     return result;
   }
 

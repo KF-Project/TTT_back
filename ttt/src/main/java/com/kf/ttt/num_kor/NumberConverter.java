@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kf.ttt.entity.Num;
 import com.kf.ttt.repository.NumRepository;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 // ¾Æ´Ï ½ÊÀÇÀÚ¸®°¡ 'ÀÏ½Ê' ¿ä³­¸®·Î Ãâ·ÂµÊ ÈæÈæ
 
@@ -20,6 +23,19 @@ public class NumberConverter {
   static String[] units = {"", "ÀÏ", "ÀÌ", "»ï", "»ç", "¿À", "À°", "Ä¥", "ÆÈ", "±¸"};
   static String[] value1 = {"", "½Ê", "¹é", "Ãµ"};  
   static String[] value2 = {"", "¸¸", "¾ï", "Á¶", "°æ"};
+  
+  public static String pickNum(String sentence) {
+    Pattern pattern = Pattern.compile("\\d+");
+    Matcher matcher = pattern.matcher(sentence);
+
+    StringBuilder numOnly = new StringBuilder();
+
+    while (matcher.find()) {
+        numOnly.append(matcher.group());
+    }
+
+    return numOnly.toString();
+  }
   
   public static List<Integer> splitNumber(int number, int n) {
     List<Integer> res = new ArrayList<>();
@@ -103,15 +119,39 @@ public class NumberConverter {
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    int number = scanner.nextInt();
-    
-    if (String.valueOf(number).charAt(0) == '1') {
-        System.out.println("(" + number + ")/(" + numberToWordKo(number, true) + ")");
+
+    String sentence = scanner.nextLine();
+    String numOnly = pickNum(sentence);
+    String korean = "";
+
+    if (!numOnly.isEmpty()) {
+      int number = Integer.parseInt(numOnly);
+      korean = numberToWordKo2(number, false);
+      // System.out.println("(" + number + ")/(" + korean + ")");///////
     }
+    String result = sentence.replaceAll(numOnly, "(" + numOnly + ")/(" + korean + ")");
+    System.out.println(result);
+
+  scanner.close();
+
+    // if(!numOnly.isEmpty()){
+    //   int number = Integer.parseInt(numOnly);
+    //   String korean = numberToWordKo2(number, false);
+    //   System.out.println("(" + number + ")/(" + korean + ")");
+    // } else {
+    //   System.out.println(sentence);
+    // }
+    // scanner.close();
+
+    // int number = scanner.nextInt();
     
-    System.out.println("(" + number + ")/(" + numberToWordKo2(number, false) + ")");
+    // if (String.valueOf(number).charAt(0) == '1') {
+    //     System.out.println("(" + number + ")/(" + numberToWordKo(number, true) + ")");
+    // }
     
-    scanner.close();
+    // System.out.println("(" + number + ")/(" + numberToWordKo2(number, false) + ")");
+    
+    // scanner.close();
   }
 
 }

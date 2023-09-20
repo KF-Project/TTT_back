@@ -10,12 +10,16 @@ import com.kf.ttt.repository.UserRepository;
 
 @Service
 public class UserService {
-	
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
-	public List<User> test(){
+
+	public List<User> test() {
 		return userRepository.test();
 	}
+
+	public int id_check(String user_id, String passwd) {
+		return userRepository.id_check(user_id, passwd);
+	}
+
 }

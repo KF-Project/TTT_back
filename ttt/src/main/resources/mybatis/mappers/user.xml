@@ -2,9 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kf.ttt.repository.UserRepository">
 
-    <select id="test" resultType="com.kf.ttt.entity.User">
-        SELECT user_id, passwd, flag, user_name 
-        FROM user
-    </select>
-  
+	<select id="test" resultType="com.kf.ttt.entity.User">
+		SELECT user_id, passwd, flag,user_name
+		FROM user
+	</select>
+
+
+	<select id="id_check" resultType="int">
+		SELECT COUNT(*)
+		FROM user
+		WHERE user_id = #{user_id}
+		AND passwd = #{passwd}
+		AND flag = 'Y'
+	</select>
+
+
+	<select id="login" resultType="com.kf.ttt.entity.User">
+		SELECT user_id,passwd, flag, user_name
+		FROM user
+		WHERE user_id =#{user_id}
+		AND passwd = #{passwd}
+		AND flag = 'Y'
+	</select>
+
+
 </mapper>

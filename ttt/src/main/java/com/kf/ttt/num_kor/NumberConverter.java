@@ -17,8 +17,8 @@ import java.util.regex.Pattern;
 // æ∆¥œ Ω ¿«¿⁄∏Æ∞° '¿œΩ ' ø‰≥≠∏Æ∑Œ √‚∑¬µ  »Ê»Ê
 
 public class NumberConverter {
-  @Autowired
-  private NumRepository numRepository;
+//   @Autowired
+//   private NumRepository numRepository;
 
   static String[] units = {"", "¿œ", "¿Ã", "ªÔ", "ªÁ", "ø¿", "¿∞", "ƒ•", "∆»", "±∏"};
   static String[] value1 = {"", "Ω ", "πÈ", "√µ"};  
@@ -107,51 +107,26 @@ public class NumberConverter {
     return String.join(delimiter ? "" : "", wordList);
   } 
 
-  public String convertAndSave(int number, boolean delimiter) {
-    String result = numberToWordKo2(number, delimiter);
-    Num num = new Num();
-    num.setResult(result);
-    // num.setLogtime(time);
-    numRepository.numToKor();
-    return result;
-  }
+//   public String convertAndSave(int number, boolean delimiter) {
+//     String result = numberToWordKo2(number, delimiter);
+//     Num num = new Num();
+//     num.setResult(result);
+//     // num.setLogtime(time);
+//     numRepository.numToKor();
+//     return result;
+//   }
 
+//  public static void main(String[] args) {
 
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-
-  //   String sentence = scanner.nextLine();
-  //   String numOnly = pickNum(sentence);
-  //   String korean = "";
-
-  //   if (!numOnly.isEmpty()) {
-  //     int number = Integer.parseInt(numOnly);
-  //     korean = numberToWordKo2(number, false);
-  //     // System.out.println("(" + number + ")/(" + korean + ")");///////
-  //   }
-  //   String result = sentence.replaceAll(numOnly, "(" + numOnly + ")/(" + korean + ")");
-  //   System.out.println(result);
-
-  // scanner.close();
-
-    // if(!numOnly.isEmpty()){
-    //   int number = Integer.parseInt(numOnly);
-    //   String korean = numberToWordKo2(number, false);
-    //   System.out.println("(" + number + ")/(" + korean + ")");
-    // } else {
-    //   System.out.println(sentence);
-    // }
-    // scanner.close();
-
-    int number = scanner.nextInt();
-    
-    if (String.valueOf(number).charAt(0) == '1') {
-        System.out.println("(" + number + ")/(" + numberToWordKo(number, true) + ")");
-    }
-    
-    System.out.println("(" + number + ")/(" + numberToWordKo2(number, false) + ")");
-    
-    scanner.close();
-  }
+//    int number = scanner.nextInt();
+//    
+//    if (String.valueOf(number).charAt(0) == '1') {
+//        System.out.println("(" + number + ")/(" + numberToWordKo(number, true) + ")");
+//    }
+//    
+//    System.out.println("(" + number + ")/(" + numberToWordKo2(number, false) + ")");
+//    
+//    scanner.close();
+//  }
 
 }

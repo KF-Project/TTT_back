@@ -14,4 +14,10 @@ public interface UserRepository {
 	
 	public User login(String user_id, String passwd);
 	
+	public List<User> admimSelectUser();
+	
+	public int adminAddUser(String user_id, String passwd, String user_name);
+	
+	public int adminIdCheck(String user_id);
+	
 }

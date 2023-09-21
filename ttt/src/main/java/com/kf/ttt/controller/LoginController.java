@@ -26,16 +26,16 @@ public class LoginController {
 		
 		Map<String, String> map = new HashMap<String , String>();
 		
-		System.out.println("check:"+user_id);
-		System.out.println("check:"+passwd);
+		System.out.println("파라미터 로그인 아이디:"+  user_id);
+		System.out.println("파라미터 로그인 비밀번호:"+  passwd);
 		
 		
 		int check = userService.id_check(user_id, passwd);
 		
-		System.out.println(check);
+		System.out.println("--------------------------"+check+"--------------------------");
 		
 		if(check == 1 ) {
-			session.setAttribute("user_id", user_id);
+			session.setAttribute("session_user_id", user_id);
 			session.setAttribute("login_ok", "yes");
 			
 			map.put("status", "true");

@@ -1,5 +1,7 @@
 package com.kf.ttt.entity;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,4 +14,5 @@ public class User {
 	private String passwd;
 	private String flag;
 	private String user_name;
+	private Date regDate;
 }

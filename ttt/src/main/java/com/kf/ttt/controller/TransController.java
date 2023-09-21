@@ -23,6 +23,7 @@ public class TransController {
 
 	@GetMapping("/{text}")
 	public Map<String, String> engToKorean(@PathVariable("text") String text) {
+
 		String transLation = transService.engToKorean(text);
 
 		Map<String, String> response = new HashMap<>();

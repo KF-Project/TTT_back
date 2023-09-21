@@ -120,19 +120,19 @@ public class NumberConverter {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
 
-    String sentence = scanner.nextLine();
-    String numOnly = pickNum(sentence);
-    String korean = "";
+  //   String sentence = scanner.nextLine();
+  //   String numOnly = pickNum(sentence);
+  //   String korean = "";
 
-    if (!numOnly.isEmpty()) {
-      int number = Integer.parseInt(numOnly);
-      korean = numberToWordKo2(number, false);
-      // System.out.println("(" + number + ")/(" + korean + ")");///////
-    }
-    String result = sentence.replaceAll(numOnly, "(" + numOnly + ")/(" + korean + ")");
-    System.out.println(result);
+  //   if (!numOnly.isEmpty()) {
+  //     int number = Integer.parseInt(numOnly);
+  //     korean = numberToWordKo2(number, false);
+  //     // System.out.println("(" + number + ")/(" + korean + ")");///////
+  //   }
+  //   String result = sentence.replaceAll(numOnly, "(" + numOnly + ")/(" + korean + ")");
+  //   System.out.println(result);
 
-  scanner.close();
+  // scanner.close();
 
     // if(!numOnly.isEmpty()){
     //   int number = Integer.parseInt(numOnly);
@@ -143,15 +143,15 @@ public class NumberConverter {
     // }
     // scanner.close();
 
-    // int number = scanner.nextInt();
+    int number = scanner.nextInt();
     
-    // if (String.valueOf(number).charAt(0) == '1') {
-    //     System.out.println("(" + number + ")/(" + numberToWordKo(number, true) + ")");
-    // }
+    if (String.valueOf(number).charAt(0) == '1') {
+        System.out.println("(" + number + ")/(" + numberToWordKo(number, true) + ")");
+    }
     
-    // System.out.println("(" + number + ")/(" + numberToWordKo2(number, false) + ")");
+    System.out.println("(" + number + ")/(" + numberToWordKo2(number, false) + ")");
     
-    // scanner.close();
+    scanner.close();
   }
 
 }

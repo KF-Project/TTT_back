@@ -62,25 +62,25 @@ public class NumberConverter2 {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
 
-    String sentence = scanner.nextLine();
-    String numOnly = pickNum(sentence);
+    // String sentence = scanner.nextLine();
+    // String numOnly = pickNum(sentence);
 
-    if(!numOnly.isEmpty()){
-      String korean = convertToKorean(Integer.parseInt(numOnly));
-      System.out.println("(" + numOnly + ")/(" + korean + ")");
-    } else {
-      System.out.println(sentence);
-    }
-    scanner.close();
-    // int number = scanner.nextInt();
-
-    // if (String.valueOf(number).charAt(0) == '1') {
-    //     System.out.println("(" + number + ")/(" + NumberConverter.numberToWordKo(number, true) + ")");
+    // if(!numOnly.isEmpty()){
+    //   String korean = convertToKorean(Integer.parseInt(numOnly));
+    //   System.out.println("(" + numOnly + ")/(" + korean + ")");
+    // } else {
+    //   System.out.println(sentence);
     // }
-
-    // System.out.println("(" + number + ")/(" + NumberConverter.numberToWordKo2(number, false) + ")");
-    // System.out.println("(" + number + ")/(" + NumberConverter.numberToWordKo2(number, true) + ")");
-
     // scanner.close();
+    int number = scanner.nextInt();
+
+    if (String.valueOf(number).charAt(0) == '1') {
+        System.out.println("(" + number + ")/(" + NumberConverter.numberToWordKo(number, true) + ")");
+    }
+
+    System.out.println("(" + number + ")/(" + NumberConverter.numberToWordKo2(number, false) + ")");
+    System.out.println("(" + number + ")/(" + NumberConverter.numberToWordKo2(number, true) + ")");
+
+    scanner.close();
   }
 }

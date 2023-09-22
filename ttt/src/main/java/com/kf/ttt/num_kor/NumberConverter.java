@@ -14,15 +14,15 @@ import com.kf.ttt.repository.NumRepository;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-// ¾Æ´Ï ½ÊÀÇÀÚ¸®°¡ 'ÀÏ½Ê' ¿ä³­¸®·Î Ãâ·ÂµÊ ÈæÈæ
+// ì•„ë‹ˆ ì‹­ì˜ìë¦¬ê°€ 'ì¼ì‹­' ìš”ë‚œë¦¬ë¡œ ì¶œë ¥ë¨ í‘í‘
 
 public class NumberConverter {
 //   @Autowired
 //   private NumRepository numRepository;
 
-  static String[] units = {"", "ÀÏ", "ÀÌ", "»ï", "»ç", "¿À", "À°", "Ä¥", "ÆÈ", "±¸"};
-  static String[] value1 = {"", "½Ê", "¹é", "Ãµ"};  
-  static String[] value2 = {"", "¸¸", "¾ï", "Á¶", "°æ"};
+  static String[] units = {"", "ì¼", "ì´", "ì‚¼", "ì‚¬", "ì˜¤", "ìœ¡", "ì¹ ", "íŒ”", "êµ¬"};
+  static String[] value1 = {"", "ì‹­", "ë°±", "ì²œ"};  
+  static String[] value2 = {"", "ë§Œ", "ì–µ", "ì¡°", "ê²½"};
   
   public static String pickNum(String sentence) {
     Pattern pattern = Pattern.compile("\\d+");
@@ -61,11 +61,11 @@ public class NumberConverter {
     return res;
   }  
  
-  // (10000)/(¸¸)
+  // (10000)/(ë§Œ)
   public static String numberToWordKo(int number, boolean delimiter) {
-    if (number == 0) return "¿µ";
+    if (number == 0) return "ì˜";
     List<String> wordList = new ArrayList<>();
-    int place = 0;  // ÇöÀç ÀÚ¸® ¼ö
+    int place = 0;  // í˜„ì¬ ìë¦¬ ìˆ˜
     while (number > 0) {
       int digits = number % 10000;
       number = number / 10000;
@@ -75,22 +75,22 @@ public class NumberConverter {
               word += value2[place];
           }
           if (digits == 1 && place == 1) {
-              wordList.add(value2[1]); // "¸¸"À» Ãß°¡
+              wordList.add(value2[1]); // "ë§Œ"ì„ ì¶”ê°€
           } else {
               wordList.add(word);
           }
       }
       place++;
     }
-    Collections.reverse(wordList);  // ¸®½ºÆ®¸¦ ¿ª¼øÀ¸·Î Á¤·Ä
+    Collections.reverse(wordList);  // ë¦¬ìŠ¤íŠ¸ë¥¼ ì—­ìˆœìœ¼ë¡œ ì •ë ¬
     return String.join(delimiter ? "" : "", wordList);
   }
 
-  // (10000)/(ÀÏ¸¸)
+  // (10000)/(ì¼ë§Œ)
   public static String numberToWordKo2(int number, boolean delimiter) {
-    if (number == 0) return "¿µ";
+    if (number == 0) return "ì˜";
     List<String> wordList = new ArrayList<>();
-    int place = 0;  // ÇöÀç ÀÚ¸® ¼ö
+    int place = 0;  // í˜„ì¬ ìë¦¬ ìˆ˜
     while (number > 0) {
       int digits = number % 10000;
       number = number / 10000;
@@ -103,7 +103,7 @@ public class NumberConverter {
       }
       place++;
     }
-    Collections.reverse(wordList);  // ¸®½ºÆ®¸¦ ¿ª¼øÀ¸·Î Á¤·Ä
+    Collections.reverse(wordList);  // ë¦¬ìŠ¤íŠ¸ë¥¼ ì—­ìˆœìœ¼ë¡œ ì •ë ¬
     return String.join(delimiter ? "" : "", wordList);
   } 
 

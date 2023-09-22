@@ -4,14 +4,14 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-// 10À» ÀÔ·ÂÇÏ¸é ¿­,½Ê µÑ ´Ù Ãâ·ÂµÇ¾î¾ß ÇÔ
+// 10ì„ ìž…ë ¥í•˜ë©´ ì—´,ì‹­ ë‘˜ ë‹¤ ì¶œë ¥ë˜ì–´ì•¼ í•¨
 
 public class NumberConverter2 {
   private static final String[] NUMBER_NAMES = {
-    "¿µ", "ÇÏ³ª", "µÑ", "¼Â", "³Ý", "´Ù¼¸", "¿©¼¸", "ÀÏ°ö", "¿©´ü", "¾ÆÈ©"
+    "ì˜", "í•˜ë‚˜", "ë‘˜", "ì…‹", "ë„·", "ë‹¤ì„¯", "ì—¬ì„¯", "ì¼ê³±", "ì—¬ëŸ", "ì•„í™‰"
   };
   private static final String[] TEN_NAMES = {
-    "", "¿­", "½º¹°", "¼­¸¥", "¸¶Èç", "½®", "¿¹¼ø", "ÀÏÈç", "¿©µç", "¾ÆÈç"
+    "", "ì—´", "ìŠ¤ë¬¼", "ì„œë¥¸", "ë§ˆí”", "ì‰°", "ì˜ˆìˆœ", "ì¼í”", "ì—¬ë“ ", "ì•„í”"
   };
 
 
@@ -39,16 +39,25 @@ public class NumberConverter2 {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     
-    int number = scanner.nextInt();
-
-    if (number >= 10000 && String.valueOf(number).charAt(0) == '1') {
-        System.out.println("(" + number + ")/(" + NumberConverter.numberToWordKo(number, true) + ")");
-    } else if (number <= 99 && number > 0) {
-    	System.out.println("(" + number + ")/(" + NumberConverter2.convertToKorean(number) + ")");
+    String input = scanner.nextLine();
+    
+    Pattern pattern = Pattern.compile("\\d+");
+    Matcher matcher = pattern.matcher(input);
+    
+    if (matcher.find()) {
+    	
+        int number = Integer.parseInt(matcher.group());
+        
+        if (number >= 10000 && String.valueOf(number).charAt(0) == '1') {
+        	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo(number, true) + ")"));
+        } else if (number <= 99 && number > 0) {
+        	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter2.convertToKorean(number) + ")"));
+        } 
+//        else 
+//        	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(number, true) + ")"));
+        
+        System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(number, true) + ")"));
     }
-
-//    System.out.println("(" + number + ")/(" + NumberConverter.numberToWordKo2(number, false) + ")");
-    System.out.println("(" + number + ")/(" + NumberConverter.numberToWordKo2(number, true) + ")");
 
     scanner.close();
   }

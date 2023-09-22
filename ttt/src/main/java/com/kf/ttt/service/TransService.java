@@ -57,7 +57,9 @@ public class TransService {
         //공백을 기준으로 문자열을 나눈 후 조사 분리 방법 고민할 것. 
         for (String word : words) {
             if (word.matches(".*[a-zA-Z].*")) { 
+            	
                 StringBuilder translatedWord = new StringBuilder();
+                
                 for (char letter : word.toUpperCase().toCharArray()) {
                     if (Character.isLetter(letter)) {
                         String translation = transDictionary.get(letter);

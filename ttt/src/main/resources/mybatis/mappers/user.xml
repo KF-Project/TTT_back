@@ -31,6 +31,7 @@
 	<select id="admimSelectUser" resultType="com.kf.ttt.entity.User">
 		SELECT  user_id, passwd, user_name, date_format(regDate,'%Y-%m-%d') AS regDate, flag
 		FROM user
+		WHERE NOT user_id = "admin"
 	</select>
 	
 	
@@ -46,4 +47,12 @@
 		WHERE user_id = #{user_id}
 	</select>
 
+	<delete id="adminDeleteUser">
+		DELETE FROM user
+		WHERE user_id = #{user_id}
+	</delete>
+	
+	<update id="adminUpdateFlag">
+		UPDATE user SET flag = #{arg0} WHERE user_id = #{arg1}
+	</update>
 </mapper>

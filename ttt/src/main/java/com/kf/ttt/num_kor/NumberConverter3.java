@@ -4,6 +4,8 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+//원투, 하나둘, 일이, 투웰브
 public class NumberConverter3 {
     private static final String[] korNums = {"공", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"};
 
@@ -21,6 +23,45 @@ public class NumberConverter3 {
         return result.toString().trim();
     }
 
+//    public static void main(String[] args) {
+//    	Scanner scanner = new Scanner(System.in);
+//    
+//    	String input = scanner.nextLine();
+//        
+//        Pattern pattern = Pattern.compile("\\d+");
+//        Matcher matcher = pattern.matcher(input);
+//        
+//        if (matcher.find()) {
+//        	
+//            int number = Integer.parseInt(matcher.group());
+//            String koreanConversion = convertToKorean(input);
+//
+//            
+//            if (number >= 10000 && String.valueOf(number).charAt(0) == '1') {
+//            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo(number, true) + ")"));
+//            } else if (number <= 99 && number > 0) {
+//            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter2.convertToKorean(number) + ")"));
+//            } 
+//            else if (String.valueOf(number).charAt(0) == '0') {
+//            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + koreanConversion + ")"));
+//            }
+////            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(number, true) + ")"));
+////            System.out.println("(" + input + ")/(" + koreanConversion + ")");
+//            System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(number, true) + ")"));
+////            System.out.println(input.replace(matcher.group(), "(" + String.valueOf(number) + ")/(" + koreanConversion + ")"));
+//        }
+//        
+//        
+////        String phone = scanner.nextLine();
+////        String koreanConversion = convertToKorean(phone);
+////        
+////        System.out.println("(" + phone + ")/(" + koreanConversion + ")");
+//    	
+//        
+//        
+//        
+//        scanner.close();
+//    }
     public static void main(String[] args) {
     	Scanner scanner = new Scanner(System.in);
     
@@ -31,22 +72,24 @@ public class NumberConverter3 {
         
         if (matcher.find()) {
         	
-            int number = Integer.parseInt(matcher.group());
+            String number = matcher.group();
             String koreanConversion = convertToKorean(input);
 
             
-            if (number >= 10000 && String.valueOf(number).charAt(0) == '1') {
-            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo(number, true) + ")"));
-            } else if (number <= 99 && number > 0) {
-            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter2.convertToKorean(number) + ")"));
+            if (Integer.parseInt(number) >= 10000 && number.charAt(0) == '1') {
+            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")"));
+            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(Integer.parseInt(number), true) + ")"));
+            } else if (Integer.parseInt(number) <= 99 && Integer.parseInt(number) > 0) {
+            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter2.convertToKorean(Integer.parseInt(number)) + ")"));
+            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(Integer.parseInt(number), true) + ")"));
             } 
-//            else if (String.valueOf(number).charAt(0) == '0') {
-//            	System.out.println(input.replace(matcher.group(), "(" + input + ")/(" + koreanConversion + ")"));
-//            }
+            else if (number.charAt(0) == '0' || number.isBlank() == true) {
+            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + koreanConversion + ")"));
+            }
 //            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(number, true) + ")"));
 //            System.out.println("(" + input + ")/(" + koreanConversion + ")");
-            System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(number, true) + ")"));
-            System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + koreanConversion + ")"));
+//            System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(Integer.parseInt(number), true) + ")"));
+//            System.out.println(input.replace(matcher.group(), "(" + String.valueOf(number) + ")/(" + koreanConversion + ")"));
         }
         
         

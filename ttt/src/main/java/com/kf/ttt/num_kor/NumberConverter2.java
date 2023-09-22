@@ -14,18 +14,6 @@ public class NumberConverter2 {
     "", "¿­", "½º¹°", "¼­¸¥", "¸¶Èç", "½®", "¿¹¼ø", "ÀÏÈç", "¿©µç", "¾ÆÈç"
   };
 
-//  public static String pickNum(String sentence) {
-//    Pattern pattern = Pattern.compile("\\d+");
-//    Matcher matcher = pattern.matcher(sentence);
-//
-//    StringBuilder numOnly = new StringBuilder();
-//
-//    while (matcher.find()) {
-//        numOnly.append(matcher.group());
-//    }
-//
-//    return numOnly.toString();
-//  }
 
   public static String convertToKorean(int number) {
     if (number >= 0 && number <= 99) {

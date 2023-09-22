@@ -20,4 +20,8 @@ public interface UserRepository {
 	
 	public int adminIdCheck(String user_id);
 	
+	public int adminDeleteUser(String user_id);
+	
+	public int adminUpdateFlag(String flag, String user_id);
+	
 }

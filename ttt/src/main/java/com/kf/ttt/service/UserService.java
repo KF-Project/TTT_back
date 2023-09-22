@@ -33,5 +33,13 @@ public class UserService {
 	public int adminIdCheck(String user_id) {
 		return userRepository.adminIdCheck(user_id);
 	}
+	
+	public int adminDeleteUser(String user_id) {
+		return userRepository.adminDeleteUser(user_id);
+	}
+	
+	public int adminUpdateFlag(String flag, String user_id) {
+		return userRepository.adminUpdateFlag(flag, user_id);
+	}
 
 }

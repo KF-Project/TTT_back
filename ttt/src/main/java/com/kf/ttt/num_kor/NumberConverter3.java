@@ -22,6 +22,29 @@ public class NumberConverter3 {
 
         return result.toString().trim();
     }
+    
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//
+//        String input = scanner.nextLine();
+//        String output = input;
+//
+//        Pattern pattern = Pattern.compile("\\d+");
+//        Matcher matcher = pattern.matcher(input);
+//
+//        while (matcher.find()) {
+//            String number = matcher.group();
+//            String koreanConversion = convertToKorean(number);
+//
+//            String replacement = "(" + number + ")/(" + koreanConversion + ")";
+//            output = output.replaceFirst(Pattern.quote(number), Matcher.quoteReplacement(replacement));
+//        }
+//
+//        System.out.println(output);
+//
+//        scanner.close();
+//    }
+
 
     public static void main(String[] args) {
     	Scanner scanner = new Scanner(System.in);
@@ -30,27 +53,42 @@ public class NumberConverter3 {
         
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(input);
-        
-        if (matcher.find()) {
-        	
-            String number = matcher.group();
-            String koreanConversion = convertToKorean(input);
 
-//            System.out.println(input.replace(matcher.group(), "(number = " + number + ")"));
-            if (Integer.parseInt(number) >= 10000 && number.charAt(0) == '1') {
+        while (matcher.find()) {
+        	
+        	String number = matcher.group();
+        	String koreanConversion = convertToKorean(number);
+        	
+        	 System.out.println(input.replace(matcher.group(), "(number = " + number + ")"));
+        	
+        	if (number.charAt(0) == '0' || number.contains(" ") || input.contains("-")) {
+//            	System.out.println(input.replace(matcher.group(), "(number = " + number + ")"));
+            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + koreanConversion + ")"));
+
+        	} else if (Integer.parseInt(number) >= 10000 && number.charAt(0) == '1') {
             	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")"));
             	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(Integer.parseInt(number), true) + ")"));
+            	
             } else if (Integer.parseInt(number) <= 99 && Integer.parseInt(number) > 0) {
             	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter2.convertToKorean(Integer.parseInt(number)) + ")"));
             	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(Integer.parseInt(number), true) + ")"));
-            } else if (number.charAt(0) == '0' || number.contains(" ") || number.contains("-")) {
-            	System.out.println(input.replace(matcher.group(), "(number = " + number + ")"));
-            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + koreanConversion + ")"));
-            }
-            
+            	
+            } else 
+            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")"));
         }
         
-
+//        
+//        while (matcher.find()) {
+//            String number = matcher.group();
+//            String koreanConversion = convertToKorean(number);
+//
+//            String replacement = "(" + number + ")/(" + koreanConversion + ")";
+//            matcher.appendReplacement(output, Matcher.quoteReplacement(replacement));
+//        }
+//        
+//        matcher.appendTail(output);
+//        System.out.println(output.toString());
+//
         scanner.close();
     }
 }

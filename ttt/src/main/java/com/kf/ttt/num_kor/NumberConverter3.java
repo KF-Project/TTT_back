@@ -54,14 +54,14 @@ public class NumberConverter3 {
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(input);
 
-        while (matcher.find()) {
+        if (matcher.find()) {
         	
         	String number = matcher.group();
         	String koreanConversion = convertToKorean(number);
         	
-        	 System.out.println(input.replace(matcher.group(), "(number = " + number + ")"));
+//        	 System.out.println(input.replace(matcher.group(), "(number = " + number + ")"));
         	
-        	if (number.charAt(0) == '0' || number.contains(" ") || input.contains("-")) {
+        	if (number.charAt(0) == '0') {
 //            	System.out.println(input.replace(matcher.group(), "(number = " + number + ")"));
             	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + koreanConversion + ")"));
 

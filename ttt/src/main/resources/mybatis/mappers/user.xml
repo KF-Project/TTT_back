@@ -18,14 +18,13 @@
 	</select>
 
 
-<!-- 	<select id="login" resultType="com.kf.ttt.entity.User">
-		SELECT user_id,passwd, flag,user_name
+	<select id="login" resultType="com.kf.ttt.entity.User">
+		SELECT user_id, passwd, flag, user_name, date_format(regDate,'%Y-%m-%d') AS regDate
 		FROM user
-		WHERE user_id =#{user_id}
-		AND passwd = #{passwd}
-		AND
-		flag = 'Y'
-	</select> -->
+		WHERE user_id =#{arg0}
+		AND passwd = #{arg1}
+		AND flag = 'Y'
+	</select> 
 
 
 	<select id="admimSelectUser" resultType="com.kf.ttt.entity.User">

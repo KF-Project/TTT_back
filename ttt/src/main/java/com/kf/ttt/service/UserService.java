@@ -22,6 +22,10 @@ public class UserService {
 		return userRepository.id_check(user_id, passwd);
 	}
 	
+	public User login(String user_id, String passwd) {
+		return userRepository.login(user_id, passwd);
+	}
+	
 	public List<User> admimSelectUser(){
 		return userRepository.admimSelectUser();
 	}

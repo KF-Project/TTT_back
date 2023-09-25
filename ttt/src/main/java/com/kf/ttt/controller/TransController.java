@@ -40,11 +40,12 @@ public class TransController {
 //		String user_id = (String) session.getAttribute("session_user_id");
 //		System.out.println(user_id);
 		
-//		String user_id = "kf02";
-//		
-//		if(trans_result != null && trans_result != "") {
-//			transLogService.transResultLog(user_id, trans_result);
-//		}
+		
+		
+		if(trans_result != null && trans_result != "") {
+			//세션 id로 수정해야함. 
+			transLogService.transResultLog("kf03", trans_result);
+		}
 		
 		Map<String, String> response = new HashMap<>();
 		response.put("text", text);

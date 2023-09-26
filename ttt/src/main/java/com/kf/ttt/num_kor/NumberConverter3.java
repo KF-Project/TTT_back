@@ -54,14 +54,14 @@ public class NumberConverter3 {
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(input);
 
-        while (matcher.find()) {
+        if (matcher.find()) {
         	
         	String number = matcher.group();
         	String koreanConversion = convertToKorean(number);
         	
-        	 System.out.println(input.replace(matcher.group(), "(number = " + number + ")"));
+//        	 System.out.println(input.replace(matcher.group(), "(number = " + number + ")"));
         	
-        	if (number.charAt(0) == '0' || number.contains(" ") || input.contains("-")) {
+        	if (number.charAt(0) == '0') {
 //            	System.out.println(input.replace(matcher.group(), "(number = " + number + ")"));
             	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + koreanConversion + ")"));
 
@@ -76,19 +76,7 @@ public class NumberConverter3 {
             } else 
             	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")"));
         }
-        
-//        
-//        while (matcher.find()) {
-//            String number = matcher.group();
-//            String koreanConversion = convertToKorean(number);
-//
-//            String replacement = "(" + number + ")/(" + koreanConversion + ")";
-//            matcher.appendReplacement(output, Matcher.quoteReplacement(replacement));
-//        }
-//        
-//        matcher.appendTail(output);
-//        System.out.println(output.toString());
-//
+
         scanner.close();
     }
 }

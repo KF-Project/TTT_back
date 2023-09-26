@@ -1,11 +1,7 @@
 package com.kf.ttt.num_kor;
 
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-// 10을 입력하면 열,십 둘 다 출력되어야 함
-
+//한국어 수사 셈낱씨(기수사)
 public class NumberConverter2 {
   private static final String[] NUMBER_NAMES = {
     "영", "하나", "둘", "셋", "넷", "다섯", "여섯", "일곱", "여덟", "아홉"
@@ -36,29 +32,4 @@ public class NumberConverter2 {
     
   }
 
-//  public static void main(String[] args) {
-//    Scanner scanner = new Scanner(System.in);
-//    
-//    String input = scanner.nextLine();
-//    
-//    Pattern pattern = Pattern.compile("\\d+");
-//    Matcher matcher = pattern.matcher(input);
-//    
-//    if (matcher.find()) {
-//    	
-//        int number = Integer.parseInt(matcher.group());
-//        
-//        if (number >= 10000 && String.valueOf(number).charAt(0) == '1') {
-//        	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo(number, true) + ")"));
-//        } else if (number <= 99 && number > 0) {
-//        	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter2.convertToKorean(number) + ")"));
-//        } 
-////        else 
-////        	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(number, true) + ")"));
-//        
-//        System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(number, true) + ")"));
-//    }
-//
-//    scanner.close();
-//  }
 }

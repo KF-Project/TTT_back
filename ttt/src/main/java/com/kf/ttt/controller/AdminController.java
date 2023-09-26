@@ -56,7 +56,7 @@ public class AdminController {
 	//관리자 회원 삭제하는 코드 
 	@PostMapping("/delete")
 	public void adminDeleteUser(String user_id) {
-		
+
 		int result = userService.adminDeleteUser(user_id);
 		System.out.println(result);
 		

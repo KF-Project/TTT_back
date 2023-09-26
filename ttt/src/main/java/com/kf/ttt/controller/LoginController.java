@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kf.ttt.entity.User;
+import com.kf.ttt.service.TransLogService;
 import com.kf.ttt.service.UserService;
 
 @RestController
@@ -20,6 +21,9 @@ public class LoginController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	TransLogService transLogService;
 	
 	@Autowired
 	User user;
@@ -43,8 +47,11 @@ public class LoginController {
 			
 			user = userService.login(user_id, passwd);
 			System.out.println(user);
+			System.out.println(user.getUser_id());
 			
-			session.setAttribute("session_user_id", user_id);
+			System.out.println(transLogService.transLogHistory("kf02"));
+			
+			session.setAttribute("session_user_id", user.getUser_id());
 			session.setAttribute("login_ok", "yes");
 			
 			map.put("status", "true");

@@ -76,19 +76,7 @@ public class NumberConverter3 {
             } else 
             	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")"));
         }
-        
-//        
-//        while (matcher.find()) {
-//            String number = matcher.group();
-//            String koreanConversion = convertToKorean(number);
-//
-//            String replacement = "(" + number + ")/(" + koreanConversion + ")";
-//            matcher.appendReplacement(output, Matcher.quoteReplacement(replacement));
-//        }
-//        
-//        matcher.appendTail(output);
-//        System.out.println(output.toString());
-//
+
         scanner.close();
     }
 }

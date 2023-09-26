@@ -3,19 +3,8 @@ package com.kf.ttt.num_kor;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
-import java.util.regex.Pattern;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.kf.ttt.entity.Num;
-import com.kf.ttt.repository.NumRepository;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-// 아니 십의자리가 '일십' 요난리로 출력됨 흑흑
-
+// 한국어 수사 한자어
 public class NumberConverter {
 //   @Autowired
 //   private NumRepository numRepository;
@@ -23,19 +12,7 @@ public class NumberConverter {
   static String[] units = {"", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"};
   static String[] value1 = {"", "십", "백", "천"};  
   static String[] value2 = {"", "만", "억", "조", "경"};
-  
-  public static String pickNum(String sentence) {
-    Pattern pattern = Pattern.compile("\\d+");
-    Matcher matcher = pattern.matcher(sentence);
 
-    StringBuilder numOnly = new StringBuilder();
-
-    while (matcher.find()) {
-        numOnly.append(matcher.group());
-    }
-
-    return numOnly.toString();
-  }
   
   public static List<Integer> splitNumber(int number, int n) {
     List<Integer> res = new ArrayList<>();
@@ -116,17 +93,5 @@ public class NumberConverter {
 //     return result;
 //   }
 
-//  public static void main(String[] args) {
-
-//    int number = scanner.nextInt();
-//    
-//    if (String.valueOf(number).charAt(0) == '1') {
-//        System.out.println("(" + number + ")/(" + numberToWordKo(number, true) + ")");
-//    }
-//    
-//    System.out.println("(" + number + ")/(" + numberToWordKo2(number, false) + ")");
-//    
-//    scanner.close();
-//  }
 
 }

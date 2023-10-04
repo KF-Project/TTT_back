@@ -7,10 +7,11 @@ import java.util.regex.Pattern;
 
 //원투, 하나둘, 일이, 트웰브
 
-//전화번호
+
 public class NumberConverter3 {
     private static final String[] korNums = {"공", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"};
-
+    
+    //전화번호
     public static String convertToKorean(String phoneNumber) {
         StringBuilder result = new StringBuilder();
 
@@ -25,27 +26,21 @@ public class NumberConverter3 {
         return result.toString().trim();
     }
     
-//    public static void main(String[] args) {
-//        Scanner scanner = new Scanner(System.in);
-//
-//        String input = scanner.nextLine();
-//        String output = input;
-//
-//        Pattern pattern = Pattern.compile("\\d+");
-//        Matcher matcher = pattern.matcher(input);
-//
-//        while (matcher.find()) {
-//            String number = matcher.group();
-//            String koreanConversion = convertToKorean(number);
-//
-//            String replacement = "(" + number + ")/(" + koreanConversion + ")";
-//            output = output.replaceFirst(Pattern.quote(number), Matcher.quoteReplacement(replacement));
-//        }
-//
-//        System.out.println(output);
-//
-//        scanner.close();
-//    }
+    //소수
+    public static String decimalPoint(String decimal) {
+    	StringBuilder result = new StringBuilder();
+
+        for (char digit : decimal.toCharArray()) {
+            if (Character.isDigit(digit)) {
+                int index = Character.getNumericValue(digit);
+                result.append(korNums[index]);
+            } else if (digit == '.') {
+                result.append(" 점 ");
+            }
+        }
+
+        return result.toString().trim();
+    }
 
 
     public static void main(String[] args) {
@@ -59,7 +54,8 @@ public class NumberConverter3 {
         while (matcher.find()) {
         	
         	String number = matcher.group();
-        	String koreanConversion = convertToKorean(number);
+        	String phoneConversion = convertToKorean(number);
+        	String decimalConversion = decimalPoint(number);
         	
         	//시간 구분
         	final String[] time = {"년", "월", "일", "시" };
@@ -74,14 +70,17 @@ public class NumberConverter3 {
             	}
             	
             }
-        	
+            
         	
             if (number.charAt(0) == '0') {
-            	System.out.println(input.replaceFirst(Pattern.quote(number), "(" + number + ")/(" + koreanConversion + ")"));
+            	System.out.println(input.replaceFirst(Pattern.quote(number), "(" + number + ")/(" + phoneConversion + ")"));
                 
             } else if (found) {
             	System.out.println(input.replaceFirst(Pattern.quote(number + date), "(" + number + date + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + " " + date + ")"));
                 
+            } else if (input.contains(".")) {
+            	System.out.println(input.replaceFirst(Pattern.quote(number), "(" + number + ")/(" + decimalConversion + ")"));
+            	
             } else if (Integer.parseInt(number) >= 10000 && number.charAt(0) == '1') {
             	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(Integer.parseInt(number), true) + ")"));
             	System.out.println(input.replaceFirst(Pattern.quote(number), "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")"));
@@ -94,10 +93,9 @@ public class NumberConverter3 {
             	System.out.println(input.replaceFirst(Pattern.quote(number), "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")"));
             }
             
-//            System.out.println(input);
         }
-
         scanner.close();
     }
+
 }
 

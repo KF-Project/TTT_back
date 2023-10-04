@@ -94,7 +94,6 @@ public class NumberConverter3 {
             	System.out.println(input.replaceFirst(Pattern.quote(number), "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")"));
             }
             
-//            System.out.println(input);
         }
 
         scanner.close();

@@ -3,6 +3,8 @@ package com.kf.ttt.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +21,7 @@ public class AdminController {
 
 	// 관리자 회원 목록 조회
 	// 관리자 아이디 admin 제외하고 조회
-	@PostMapping
+	@GetMapping
 	public List<User> admimSelectUser() {
 		System.out.println(userService.admimSelectUser());
 		return userService.admimSelectUser();
@@ -54,7 +56,7 @@ public class AdminController {
 	//관리자 flag(로그인 여부) Y/N 수정하는 코드
 	
 	//관리자 회원 삭제하는 코드 
-	@PostMapping("/delete")
+	@DeleteMapping("/delete")
 	public void adminDeleteUser(String user_id) {
 
 		int result = userService.adminDeleteUser(user_id);

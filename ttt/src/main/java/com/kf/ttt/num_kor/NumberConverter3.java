@@ -54,6 +54,22 @@ public class NumberConverter3 {
     	Pattern p4dec = Pattern.compile("\\d+\\.\\d+");
         Matcher m4dec = p4dec.matcher(input);
         
+        Pattern p4phone = Pattern.compile("\\d+\\ \\d+\\ \\d+");
+        Matcher m4phone = p4phone.matcher(input);
+        
+        
+        
+        
+        
+        //띄어쓰기 된 전화번호 출력
+        while (m4phone.find()) {
+        	String number = m4phone.group();
+        	String phoneConversion = convertToKorean(number);
+        	
+        	System.out.println(input.replaceFirst(Pattern.quote(number), "(" + number + ")/(" + phoneConversion + ")"));
+            
+        }
+        
         //소수 출력
         while (m4dec.find()) {
         	String number = m4dec.group();
@@ -66,7 +82,7 @@ public class NumberConverter3 {
         }
         	
         //소수 외 나머지 출력
-        if (matcher.find()) {
+        while (matcher.find()) {
         	
         	String number = matcher.group();
         	String phoneConversion = convertToKorean(number);
@@ -88,6 +104,7 @@ public class NumberConverter3 {
         	
             if (number.charAt(0) == '0') {
             	System.out.println(input.replaceFirst(Pattern.quote(number), "(" + number + ")/(" + phoneConversion + ")"));
+//            	if 
                 
             } else if (found) {
             	System.out.println(input.replaceFirst(Pattern.quote(number + date), "(" + number + date + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + " " + date + ")"));

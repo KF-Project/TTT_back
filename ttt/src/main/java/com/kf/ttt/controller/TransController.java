@@ -40,8 +40,9 @@ public class TransController {
 		
 		
 		if(trans_result != null && trans_result != "") {
-			//세션 id로 수정해야함. 
+			//세션 id로 수정해야함.
 			transLogService.addTransResultToLog("kf03", trans_result);
+			System.out.println(transLogService.addTransResultToLog("kf03", trans_result));
 		}
 		
 		Map<String, String> response = new HashMap<>();

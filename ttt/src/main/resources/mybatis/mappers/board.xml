@@ -6,4 +6,16 @@
 		SELECT board_id, user_id, title, contents, DATE_FORMAT(regDate, '%Y-%m-%d')AS regDate
 		FROM board
 	</select>
+	
+	<select id="noticeBoardDetail" resultType="com.kf.ttt.entity.Board">
+		SELECT board_id, user_id, title, contents, DATE_FORMAT(regDate, '%Y-%m-%d')AS regDate
+		FROM board
+		WHERE board_id = #{board_id}
+	</select>
+	
+	<delete id="noticeBoardDelete">
+		DELETE FROM board
+		WHERE board_id= #{board_id}
+	</delete>
+	
 </mapper>

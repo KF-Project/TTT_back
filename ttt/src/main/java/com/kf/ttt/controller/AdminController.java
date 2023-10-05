@@ -27,6 +27,8 @@ public class AdminController {
 		return userService.admimSelectUser();
 	}
 
+	//관리자 회원 추가 페이지 이동
+	
 	// 관리자 회원 추가
 	@PostMapping("/add")
 	public void addUser(String user_id, String passwd, String user_name) {
@@ -41,7 +43,7 @@ public class AdminController {
 			System.out.println("존재하는 아이디입니다.");
 		}
 		
-//		admin 이나 manage 포함된 유사관리자아이디 추가 막기
+//		admin 이나 manage 포함된 유사관리자아이디 추가로 막기
 //		if (check == 0) {
 //			int result = userService.adminAddUser(user_id, passwd, user_name);
 //			System.out.println(result);

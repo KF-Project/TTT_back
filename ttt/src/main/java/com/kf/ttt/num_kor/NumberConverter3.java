@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 public class NumberConverter3 {
     private static final String[] korNums = {"공", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"};
+    private static final String[] korNums_dec = {"영", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"};
     
     //전화번호
     public static String convertToKorean(String phoneNumber) {
@@ -31,9 +32,12 @@ public class NumberConverter3 {
         for (char digit : decimal.toCharArray()) {
             if (Character.isDigit(digit)) {
                 int index = Character.getNumericValue(digit);
-                result.append(korNums[index]);
+                result.append(korNums_dec[index]);
+//                System.out.println("result = " + result);
+                
             } else if (digit == '.') {
-                result.append(" 점 ");
+            	result.append(" 점 ");
+            	
             }
         }
 
@@ -51,7 +55,8 @@ public class NumberConverter3 {
         Matcher matcher = pattern.matcher(input);
     	
         //소수 정규식 패턴 -> 기념일?
-    	Pattern p4dec = Pattern.compile("\\d+\\.\\d+");
+//    	Pattern p4dec = Pattern.compile("\\d+\\.\\d+");
+    	Pattern p4dec = Pattern.compile("\\d+(\\.\\d+)");
         Matcher m4dec = p4dec.matcher(input);
         
         //전화번호 정규식 패턴
@@ -65,10 +70,20 @@ public class NumberConverter3 {
         //소수 출력
         while (m4dec.find()) {
         	String number = m4dec.group();
-        	String decimalConversion = decimalPoint(number);
+        	
+        	String left = number.split("\\.")[0];
+            String right = number.split("\\.")[1]; 
+            
+            String leftRes = NumberConverter.numberToWordKo(Integer.parseInt(left), true);
+            String rightRes = decimalPoint(right);
+            
+//        	String decimalConversion = decimalPoint(number);
+        	
+            System.out.println(input.replace(number, "(" + number + ")/(" + leftRes + " 점 " + rightRes + ")"));
+            
         	
 //        	if (number.contains(".")) {
-        		System.out.println(input.replace(number, "(" + number + ")/(" + decimalConversion + ")"));
+//        		System.out.println(input.replace(number, "(" + number + ")/(" + decimalConversion + ")"));
 //        	}
         	
         }

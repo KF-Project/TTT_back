@@ -22,7 +22,7 @@ public class SymbolTransService {
 		map.put("/", divide);
 	}
 
-	// 특수기호 전사 함수
+	 
 	public static String specialSymbolTrans(String text) {
 		String[] transLation = map.get(text);
 		

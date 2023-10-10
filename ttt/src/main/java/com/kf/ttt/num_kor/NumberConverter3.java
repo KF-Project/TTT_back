@@ -1,10 +1,11 @@
 package com.kf.ttt.num_kor;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-//원투, 하나둘, 일이, 트웰브
 
 public class NumberConverter3 {
     private static final String[] korNums = {"공", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"};
@@ -33,7 +34,6 @@ public class NumberConverter3 {
             if (Character.isDigit(digit)) {
                 int index = Character.getNumericValue(digit);
                 result.append(korNums_dec[index]);
-//                System.out.println("result = " + result);
                 
             } else if (digit == '.') {
             	result.append(" 점 ");
@@ -54,9 +54,8 @@ public class NumberConverter3 {
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(input);
     	
-        //소수 정규식 패턴 -> 기념일?
-//    	Pattern p4dec = Pattern.compile("\\d+\\.\\d+");
-    	Pattern p4dec = Pattern.compile("\\d+(\\.\\d+)");
+        //소수 정규식 패턴
+    	Pattern p4dec = Pattern.compile("\\d+\\.\\d+");
         Matcher m4dec = p4dec.matcher(input);
         
         //전화번호 정규식 패턴
@@ -65,6 +64,10 @@ public class NumberConverter3 {
         
         Pattern p4phone_hy = Pattern.compile("\\d+\\-\\d+\\-\\d+");
         Matcher m4phone_hy = p4phone_hy.matcher(input);
+        
+        //단위 정규식 패턴
+        Pattern p4m = Pattern.compile("\\d+[a-z]+");
+        Matcher m4m = p4m.matcher(input);
         
         
         //소수 출력
@@ -77,15 +80,36 @@ public class NumberConverter3 {
             String leftRes = NumberConverter.numberToWordKo(Integer.parseInt(left), true);
             String rightRes = decimalPoint(right);
             
-//        	String decimalConversion = decimalPoint(number);
-        	
-            System.out.println(input.replace(number, "(" + number + ")/(" + leftRes + " 점 " + rightRes + ")"));
+            //기념일과 소수 구분
+            List<String> specalDays = Arrays.asList("2.28", "3.1", "3.8", "3.15", "4.3", "4.19", "5.18", "6.10", "6.25", "8.15");
             
+            if (specalDays.contains(number)) {
+            	System.out.println(input.replace(number, "(" + number + ")/(" + leftRes + rightRes + ")"));
+            } else 
+            	System.out.println(input.replace(number, "(" + number + ")/(" + leftRes + " 점 " + rightRes + ")"));
+        }
+        
+        //단위 출력
+        while (m4m.find()) {
+        	String number = m4m.group();
+        	System.out.println("number = " + number);
         	
-//        	if (number.contains(".")) {
-//        		System.out.println(input.replace(number, "(" + number + ")/(" + decimalConversion + ")"));
-//        	}
-        	
+        	HashMap<String, String> unitMap = new HashMap<>();
+        	unitMap.put("mm", "밀리미터");
+            unitMap.put("cm", "센티미터");
+            unitMap.put("in", "인치");
+            //숫자와 문자를 분리하는 정규식이나 뭐.. 그런게 필요할 듯 (패턴쓰든지 스플릿쓰든지..)
+            
+//            String[] parts = input.split(" ");
+//            String value = parts[0];
+//            System.out.println("value = " + value);
+//            String unit = parts[1];
+//            System.out.println("unit = " + unit);
+            
+            if (unitMap.containsKey(number)) {
+            	System.out.println(input.replace(number, "(" + number + ")/(" + unitMap.get("mm") + ")"));
+//                System.out.println("(" + value + " " + unitMap.get(unit) + ")입니다");
+            } 
         }
         	
         //소수 외 나머지 출력

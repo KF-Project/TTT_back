@@ -27,4 +27,11 @@ public class BoardService {
 		return boardRepository.noticeBoardDelete(board_id);
 	}
 	
+	public int noticeBoardInsert(String user_id, String title, String contents) {
+		return boardRepository.noticeBoardInsert(user_id, title, contents);
+	}
+	
+	public int noticeBoardUpdate(String title, String contents, int board_id) {
+		return boardRepository.noticeBoardUpdate(title, contents, board_id);
+	}
 }

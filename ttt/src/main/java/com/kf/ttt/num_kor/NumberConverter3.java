@@ -50,7 +50,7 @@ public class NumberConverter3 {
     
     	String input = scanner.nextLine();
     	
-    	//자연수 정규식 패턴
+    	//자연수 정규식 패턴 -> 여기를 수정해야? 한 문장에 두 개의 숫자를 인식할까나? 출력 부분이 문제인 것 같기도 하고.. 
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(input);
     	
@@ -69,9 +69,9 @@ public class NumberConverter3 {
         Pattern p4m = Pattern.compile("\\d+[a-z]+");
         Matcher m4m = p4m.matcher(input);
         
-        
+//        while (true) {
         //소수 출력
-        while (m4dec.find()) {
+        if (m4dec.find()) {
         	String number = m4dec.group();
         	
         	String left = number.split("\\.")[0];
@@ -87,33 +87,43 @@ public class NumberConverter3 {
             	System.out.println(input.replace(number, "(" + number + ")/(" + leftRes + rightRes + ")"));
             } else 
             	System.out.println(input.replace(number, "(" + number + ")/(" + leftRes + " 점 " + rightRes + ")"));
+//            break;
         }
         
         //단위 출력
-        while (m4m.find()) {
+        if (m4m.find()) {
         	String number = m4m.group();
-        	System.out.println("number = " + number);
+        	String numbers = number.replaceAll("[^0-9]", "");
+            String letters = number.replaceAll("[^a-zA-Z]", "");
         	
         	HashMap<String, String> unitMap = new HashMap<>();
-        	unitMap.put("mm", "밀리미터");
-            unitMap.put("cm", "센티미터");
+        	unitMap.put("mm", "밀리미터, 밀리"); //넓이
+            unitMap.put("cm", "센티미터, 센티");
+            unitMap.put("m", "미터");
+            unitMap.put("km", "킬로미터, 킬로");
             unitMap.put("in", "인치");
-            //숫자와 문자를 분리하는 정규식이나 뭐.. 그런게 필요할 듯 (패턴쓰든지 스플릿쓰든지..)
+            unitMap.put("mg", "밀리그램, 밀리"); //무게
+            unitMap.put("g", "그램");
+            unitMap.put("kg", "킬로그램, 킬로");
+            unitMap.put("t", "톤");
+            unitMap.put("cc", "시시"); //부피
+            unitMap.put("ml", "밀리리터, 밀리");
+            unitMap.put("L", "리터");
+            unitMap.put("bit", "비트"); //데이터양
+            unitMap.put("B", "바이트");
+            unitMap.put("KB", "킬로바이트");
+            unitMap.put("MB", "메가바이트, 메가");
+            unitMap.put("GB", "기가바이트, 기가");
+            unitMap.put("TB", "테라바이트, 테라");
             
-//            String[] parts = input.split(" ");
-//            String value = parts[0];
-//            System.out.println("value = " + value);
-//            String unit = parts[1];
-//            System.out.println("unit = " + unit);
-            
-            if (unitMap.containsKey(number)) {
-            	System.out.println(input.replace(number, "(" + number + ")/(" + unitMap.get("mm") + ")"));
-//                System.out.println("(" + value + " " + unitMap.get(unit) + ")입니다");
+            if (unitMap.containsKey(letters)) {
+            	System.out.println(input.replace(number, "(" + number + ")/(" +  NumberConverter.numberToWordKo(Integer.parseInt(numbers), true) + " " + unitMap.get(letters) + ")"));
             } 
+//            break;
         }
         	
         //소수 외 나머지 출력
-        if (matcher.find()) {
+        while (matcher.find()) {
         	
         	String number = matcher.group();
         	String phoneConversion = convertToKorean(number);
@@ -140,12 +150,13 @@ public class NumberConverter3 {
                 	String phoneConversion_sp = convertToKorean(num4phone);
                 	
                 	System.out.println(input.replaceFirst(Pattern.quote(num4phone), "(" + num4phone + ")/(" + phoneConversion_sp + ")"));
-                	
+//                	break;
             	} else if (m4phone_hy.find()) { //하이픈 있는 전화번호 출력
             		String num4phone = m4phone_hy.group();
                 	String phoneConversion_hy = convertToKorean(num4phone);
                 	
                 	System.out.println(input.replaceFirst(Pattern.quote(num4phone), "(" + num4phone + ")/(" + phoneConversion_hy + ")"));
+//                	break;
             	}
                 
             } else if (found) { //날짜 출력
@@ -164,9 +175,9 @@ public class NumberConverter3 {
             }
             
         }
-
         scanner.close();
-    }
+        }
+//    }
 
 }
 

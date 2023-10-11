@@ -92,23 +92,31 @@ public class NumberConverter3 {
         //단위 출력
         while (m4m.find()) {
         	String number = m4m.group();
-        	System.out.println("number = " + number);
+        	String numbers = number.replaceAll("[^0-9]", "");
+            String letters = number.replaceAll("[^a-zA-Z]", "");
         	
         	HashMap<String, String> unitMap = new HashMap<>();
-        	unitMap.put("mm", "밀리미터");
-            unitMap.put("cm", "센티미터");
+        	unitMap.put("mm", "밀리미터, 밀리"); //넓이
+            unitMap.put("cm", "센티미터, 센티");
+            unitMap.put("m", "미터");
+            unitMap.put("km", "킬로미터, 킬로");
             unitMap.put("in", "인치");
-            //숫자와 문자를 분리하는 정규식이나 뭐.. 그런게 필요할 듯 (패턴쓰든지 스플릿쓰든지..)
+            unitMap.put("mg", "밀리그램, 밀리"); //무게
+            unitMap.put("g", "그램");
+            unitMap.put("kg", "킬로그램, 킬로");
+            unitMap.put("t", "톤");
+            unitMap.put("cc", "시시"); //부피
+            unitMap.put("ml", "밀리리터, 밀리");
+            unitMap.put("L", "리터");
+            unitMap.put("bit", "비트"); //데이터양
+            unitMap.put("B", "바이트");
+            unitMap.put("KB", "킬로바이트");
+            unitMap.put("MB", "메가바이트, 메가");
+            unitMap.put("GB", "기가바이트, 기가");
+            unitMap.put("TB", "테라바이트, 테라");
             
-//            String[] parts = input.split(" ");
-//            String value = parts[0];
-//            System.out.println("value = " + value);
-//            String unit = parts[1];
-//            System.out.println("unit = " + unit);
-            
-            if (unitMap.containsKey(number)) {
-            	System.out.println(input.replace(number, "(" + number + ")/(" + unitMap.get("mm") + ")"));
-//                System.out.println("(" + value + " " + unitMap.get(unit) + ")입니다");
+            if (unitMap.containsKey(letters)) {
+            	System.out.println(input.replace(number, "(" + number + ")/(" +  NumberConverter.numberToWordKo(Integer.parseInt(numbers), true) + " " + unitMap.get(letters) + ")"));
             } 
         }
         	

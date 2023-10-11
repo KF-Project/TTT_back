@@ -8,11 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kf.ttt.entity.Board;
-import com.kf.ttt.repository.BoardRepository;
 import com.kf.ttt.service.BoardService;
 
 //관리자는 공지사항 게시판 crud 가능
@@ -55,8 +56,32 @@ public class BoardController {
 	}
 
 	// 공지사항 새글 등록
+	@PostMapping("/new")
+	public void noticeBoardInsert(String user_id, String title, String contents) {
+		//세션 아이디가 admin일때 새글 등록 가능하도록 수정. 
+		int result = boardService.noticeBoardInsert(user_id, title, contents);
+		
+		if(result == 1) {
+			System.out.println("새글 등록 성공");
+		}else {
+			System.out.println("새글 등록 실패, 다시시도");
+		}
+	}
 	
 	// 공지사항 수정
+	// put? patch..? 아니면 그냥 GET?..
+	// DTO 설정? 
+	@PutMapping("/update")
+	public void noticeBoardUpdate(String title, String contents, int board_id) {
+		//세션 아이디가 admin일 때 게시글 수정이 가능하도록 수정. 
+		int result = boardService.noticeBoardUpdate(title, contents, board_id);
+		
+		if(result == 1) {
+			System.out.println("공지사항 수정 완료");
+		}else {
+			System.out.println("공지사항 수정 실패, 다시시도 ");
+		}
+	}
 	
 	// 공지사항 삭제
 	// 다중 삭제가 될지는 모르겠음. 
@@ -64,7 +89,12 @@ public class BoardController {
 	public void noticeBoardDelete(int board_id) {
 		//세션 아이디가 admin 일 때 삭제 기능 되도록 수정
 		int result = boardService.noticeBoardDelete(board_id);
-		System.out.println(result);
+		
+		if(result == 1) {
+			System.out.println("삭제 성공");
+		}else {			
+			System.out.println("삭제 실패");
+		}
 	}
 	
 	// 첨부파일

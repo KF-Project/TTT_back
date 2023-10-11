@@ -18,4 +18,15 @@
 		WHERE board_id= #{board_id}
 	</delete>
 	
+	<insert id="noticeBoardInsert">
+		INSERT INTO board(user_id, title, contents)
+		VALUES(#{arg0},#{arg1},#{arg2})
+	</insert>
+	
+	<update id="noticeBoardUpdate">
+		UPDATE board
+		SET title = #{arg0} , contents = #{arg1}, regDate = NOW()
+		WHERE board_id = #{arg2}
+	</update>
+	
 </mapper>

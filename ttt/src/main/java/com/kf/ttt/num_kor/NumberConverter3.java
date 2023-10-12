@@ -49,6 +49,8 @@ public class NumberConverter3 {
     	Scanner scanner = new Scanner(System.in);
     
     	String input = scanner.nextLine();
+    	String result1 = input;
+    	String result2 = input;
     	
     	//자연수 정규식 패턴 -> 여기를 수정해야? 한 문장에 두 개의 숫자를 인식할까나? 출력 부분이 문제인 것 같기도 하고.. 
         Pattern pattern = Pattern.compile("\\d+");
@@ -71,7 +73,7 @@ public class NumberConverter3 {
         
 //        while (true) {
         //소수 출력
-        if (m4dec.find()) {
+        while (m4dec.find()) {
         	String number = m4dec.group();
         	
         	String left = number.split("\\.")[0];
@@ -87,14 +89,14 @@ public class NumberConverter3 {
             	System.out.println(input.replace(number, "(" + number + ")/(" + leftRes + rightRes + ")"));
             } else 
             	System.out.println(input.replace(number, "(" + number + ")/(" + leftRes + " 점 " + rightRes + ")"));
-//            break;
+            break;
         }
         
         //단위 출력
         if (m4m.find()) {
-        	String number = m4m.group();
-        	String numbers = number.replaceAll("[^0-9]", "");
-            String letters = number.replaceAll("[^a-zA-Z]", "");
+        	String unit = m4m.group();
+        	String numbers = unit.replaceAll("[^0-9]", "");
+            String letters = unit.replaceAll("[^a-zA-Z]", "");
         	
         	HashMap<String, String> unitMap = new HashMap<>();
         	unitMap.put("mm", "밀리미터, 밀리"); //넓이
@@ -117,7 +119,7 @@ public class NumberConverter3 {
             unitMap.put("TB", "테라바이트, 테라");
             
             if (unitMap.containsKey(letters)) {
-            	System.out.println(input.replace(number, "(" + number + ")/(" +  NumberConverter.numberToWordKo(Integer.parseInt(numbers), true) + " " + unitMap.get(letters) + ")"));
+            	System.out.println(input.replace(unit, "(" + unit + ")/(" +  NumberConverter.numberToWordKo(Integer.parseInt(numbers), true) + " " + unitMap.get(letters) + ")"));
             } 
 //            break;
         }
@@ -150,31 +152,40 @@ public class NumberConverter3 {
                 	String phoneConversion_sp = convertToKorean(num4phone);
                 	
                 	System.out.println(input.replaceFirst(Pattern.quote(num4phone), "(" + num4phone + ")/(" + phoneConversion_sp + ")"));
-//                	break;
+                	break;
+                	
             	} else if (m4phone_hy.find()) { //하이픈 있는 전화번호 출력
             		String num4phone = m4phone_hy.group();
                 	String phoneConversion_hy = convertToKorean(num4phone);
                 	
                 	System.out.println(input.replaceFirst(Pattern.quote(num4phone), "(" + num4phone + ")/(" + phoneConversion_hy + ")"));
-//                	break;
+                	break;
             	}
                 
             } else if (found) { //날짜 출력
             	System.out.println(input.replaceFirst(Pattern.quote(number + date), "(" + number + date + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + " " + date + ")"));
+            	//replaceFirst 대신 replace 써보삼
                 
             } else if (Integer.parseInt(number) >= 10000 && number.charAt(0) == '1') { //10000 이상이고 1로 시작하는 수 앞에 '일' 출력
-            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(Integer.parseInt(number), true) + ")"));
-            	System.out.println(input.replaceFirst(Pattern.quote(number), "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")"));
+//            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(Integer.parseInt(number), true) + ")"));
+//            	System.out.println(input.replaceFirst(Pattern.quote(number), "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")"));
+            	
+            	result1 = result1.replace(number, "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")");
+            	result2 = result2.replace(number, "(" + number + ")/(" + NumberConverter.numberToWordKo2(Integer.parseInt(number), true) + ")");
                 
             } else if (Integer.parseInt(number) <= 99 && Integer.parseInt(number) > 0) { //'하나, 둘, 셋' 출력
-            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(Integer.parseInt(number), true) + ")"));
-            	System.out.println(input.replaceFirst(Pattern.quote(number), "(" + number + ")/(" + NumberConverter2.convertToKorean(Integer.parseInt(number)) + ")"));
+            	result1 = result1.replace(number, "(" + number + ")/(" + NumberConverter.numberToWordKo2(Integer.parseInt(number), true) + ")");
+            	result2 = result2.replace(number, "(" + number + ")/(" + NumberConverter2.convertToKorean(Integer.parseInt(number)) + ")");
                 
             } else { //'일, 이, 삼' 출력
-            	System.out.println(input.replaceFirst(Pattern.quote(number), "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")"));
+            	result1 = result1.replace(number, "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")");
+            	result2 = result2.replace(number, "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")");
             }
             
         }
+        System.out.println(result1);
+        System.out.println(result2);
+        
         scanner.close();
         }
 //    }

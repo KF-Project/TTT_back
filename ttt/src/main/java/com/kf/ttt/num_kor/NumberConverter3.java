@@ -178,14 +178,11 @@ public class NumberConverter3 {
             	result2 = result2.replace(number, "(" + number + ")/(" + NumberConverter2.convertToKorean(Integer.parseInt(number)) + ")");
                 
             } else { //'일, 이, 삼' 출력
-//            	System.out.println(input.replaceFirst(Pattern.quote(number), "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")"));
             	result1 = result1.replace(number, "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")");
             	result2 = result2.replace(number, "(" + number + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + ")");
             }
             
         }
-//        System.out.println("result1 = " + result1);
-//        System.out.println("result2 = " + result2);
         System.out.println(result1);
         System.out.println(result2);
         

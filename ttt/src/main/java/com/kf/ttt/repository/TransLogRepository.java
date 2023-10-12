@@ -11,4 +11,6 @@ public interface TransLogRepository {
 	public int addTransResultToLog(String user_id, String trans_result);
 	
 	public List<TransLog> transLogHistory(String user_id);
+	
+	public List<TransLog> searchTransLog(String user_id, String trans_result);
 }

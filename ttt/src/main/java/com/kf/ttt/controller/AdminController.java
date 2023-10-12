@@ -58,6 +58,7 @@ public class AdminController {
 	//관리자 flag(로그인 여부) Y/N 수정하는 코드
 	
 	//관리자 회원 삭제하는 코드 
+	//회원 삭제 시 회원 전사 기록도 삭제되어야함. 
 	@DeleteMapping("/delete")
 	public void adminDeleteUser(String user_id) {
 

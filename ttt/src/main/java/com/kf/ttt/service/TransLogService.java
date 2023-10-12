@@ -21,4 +21,8 @@ public class TransLogService {
 	public List<TransLog> transLogHistory(String user_id){
 		return transLogRepository.transLogHistory(user_id);
 	}
+	
+	public List<TransLog> searchTransLog(String user_id, String trans_result){
+		return transLogRepository.searchTransLog(user_id, trans_result);
+	}
 }

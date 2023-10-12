@@ -13,5 +13,12 @@
 		FROM log
 		WHERE user_id = #{user_id}
 	</select>
+	
+	<select id="searchTransLog" resultType="com.kf.ttt.entity.TransLog">
+		SELECT trans_result, DATE_FORMAT(trans_time,'%Y-%m-%d') AS trans_time
+		FROM log
+		WHERE user_id = #{arg0}
+		AND trans_result LIKE CONCAT('%',#{arg1},'%')
+	</select>
 
 </mapper>

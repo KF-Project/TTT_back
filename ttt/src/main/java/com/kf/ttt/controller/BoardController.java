@@ -98,4 +98,5 @@ public class BoardController {
 	}
 	
 	// 첨부파일
+	
 }

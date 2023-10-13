@@ -52,14 +52,6 @@ public class TransController {
 
 	}
 
-	// 전사 기록 검색
-	//Optional은 one result일 경우에 사용해야할듯
-//	@GetMapping("/search/{trans_result}")
-//	public List<TransLog> searchTransLog1(@PathVariable String trans_result) {
-//		// 세션 로그인 아이디
-//		String user_id = "kf03";
-//		return transLogService.searchTransLog(user_id, trans_result);
-//	}
 
 	
 	@GetMapping("/search/{trans_result}")

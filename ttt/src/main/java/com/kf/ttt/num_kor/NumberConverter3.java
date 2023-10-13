@@ -74,10 +74,10 @@ public class NumberConverter3 {
 //        while (true) {
         //소수 출력
         while (m4dec.find()) {
-        	String number = m4dec.group();
+        	String decimal = m4dec.group();
         	
-        	String left = number.split("\\.")[0];
-            String right = number.split("\\.")[1]; 
+        	String left = decimal.split("\\.")[0];
+            String right = decimal.split("\\.")[1]; 
             
             String leftRes = NumberConverter.numberToWordKo(Integer.parseInt(left), true);
             String rightRes = decimalPoint(right);
@@ -85,15 +85,15 @@ public class NumberConverter3 {
             //기념일과 소수 구분
             List<String> specalDays = Arrays.asList("2.28", "3.1", "3.8", "3.15", "4.3", "4.19", "5.18", "6.10", "6.25", "8.15");
             
-            if (specalDays.contains(number)) {
-            	System.out.println(input.replace(number, "(" + number + ")/(" + leftRes + rightRes + ")"));
+            if (specalDays.contains(decimal)) {
+            	System.out.println(input.replace(decimal, "(" + decimal + ")/(" + leftRes + rightRes + ")"));
             } else 
-            	System.out.println(input.replace(number, "(" + number + ")/(" + leftRes + " 점 " + rightRes + ")"));
-            break;
+            	System.out.println(input.replace(decimal, "(" + decimal + ")/(" + leftRes + " 점 " + rightRes + ")"));
+//            break;
         }
         
         //단위 출력
-        if (m4m.find()) {
+        while (m4m.find()) {
         	String unit = m4m.group();
         	String numbers = unit.replaceAll("[^0-9]", "");
             String letters = unit.replaceAll("[^a-zA-Z]", "");
@@ -144,6 +144,7 @@ public class NumberConverter3 {
             	
             }
             
+            
             if (number.charAt(0) == '0') { //띄어쓰기 없는 전화번호 출력
             	System.out.println(input.replaceFirst(Pattern.quote(number), "(" + number + ")/(" + phoneConversion + ")"));
             	
@@ -183,12 +184,12 @@ public class NumberConverter3 {
             }
             
         }
+        
         System.out.println(result1);
         System.out.println(result2);
         
         scanner.close();
-        }
 //    }
-
+    }
 }
 

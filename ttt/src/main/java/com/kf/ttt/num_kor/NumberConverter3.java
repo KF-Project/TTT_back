@@ -52,7 +52,7 @@ public class NumberConverter3 {
     	String result1 = input;
     	String result2 = input;
     	
-    	//자연수 정규식 패턴 -> 여기를 수정해야? 한 문장에 두 개의 숫자를 인식할까나? 출력 부분이 문제인 것 같기도 하고.. 
+    	//자연수 정규식 패턴
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(input);
     	

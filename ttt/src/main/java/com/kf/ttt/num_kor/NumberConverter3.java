@@ -166,6 +166,7 @@ public class NumberConverter3 {
             } else if (found) { //날짜 출력
             	System.out.println(input.replaceFirst(Pattern.quote(number + date), "(" + number + date + ")/(" + NumberConverter.numberToWordKo(Integer.parseInt(number), true) + " " + date + ")"));
             	//replaceFirst 대신 replace 써보삼
+            	//replaceAll
                 
             } else if (Integer.parseInt(number) >= 10000 && number.charAt(0) == '1') { //10000 이상이고 1로 시작하는 수 앞에 '일' 출력
 //            	System.out.println(input.replace(matcher.group(), "(" + number + ")/(" + NumberConverter.numberToWordKo2(Integer.parseInt(number), true) + ")"));
